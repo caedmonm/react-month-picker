@@ -1,0 +1,27 @@
+{
+  "name": "react-month-picker",
+  "version": "0.0.1",
+  "description": "Simple React month picker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caedmonm/react-month-picker.git"
+  },
+  "keywords": [
+    "react",
+    "calendar",
+    "monthpicker",
+    "month picker",
+    "date picker",
+    "months"
+  ],
+  "author": "CAEDMON MULLIN <caedmon.m@gmail.com> (https://caedmonmullin.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caedmonm/react-month-picker/issues"
+  },
+  "homepage": "https://github.com/caedmonm/react-month-picker#readme"
+}
