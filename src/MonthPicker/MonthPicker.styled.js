@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Selected = styled.div`
-  border: ${({ theme }) => theme.primary.colours.grey_light} 1px solid;
+  border: #eee 1px solid;
   border-radius: 5px;
   position: relative;
   user-select: none;

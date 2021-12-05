@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Modal = styled.div`
   background-color: white;
-  border: ${({ theme }) => theme.primary.colours.grey_light} 1px solid;
+  border: #eee 1px solid;
   position: absolute;
   top: 35px;
   right: 0;
@@ -18,7 +18,7 @@ export const Presets = styled.div`
   box-sizing: border-box;
   flex: 0.5;
   padding: 20px;
-  border-right: ${({ theme }) => theme.primary.colours.grey_light} 1px solid;
+  border-right: #eee 1px solid;
 `;
 
 export const MonthPicker = styled.div`
@@ -28,13 +28,13 @@ export const MonthPicker = styled.div`
 `;
 
 export const Title = styled.div`
-  color: ${({ theme }) => theme.primary.colours.grey_medium};
+  color: #575757;
   margin: 0 0 20px 0;
   user-select: none;
 `;
 
 export const Preset = styled.div`
-  color: ${({ theme }) => theme.primary.colours.blue_grey};
+  color: #282c34;
   font-weight: bold;
   cursor: pointer;
 `;
@@ -57,7 +57,7 @@ export const Months = styled.div`
 `;
 
 export const Month = styled.div`
-  border: ${({ theme }) => theme.primary.colours.grey_light} 1px solid;
+  border: #eee 1px solid;
   padding: 5px;
   border-radius: 5px;
   background-color: white;
@@ -65,12 +65,10 @@ export const Month = styled.div`
   &:hover {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   }
-
   &.selected {
-    background-color: ${({ theme }) => theme.primary.colours.greenL};
+    background-color: #1d7f7a;
     color: white;
   }
-
   pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};

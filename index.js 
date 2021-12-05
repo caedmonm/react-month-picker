@@ -1,3 +1,0 @@
-import MonthPicker from "./MonthPicker/MonthPicker";
-
-export default MonthPicker;

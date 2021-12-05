@@ -1,27 +1,44 @@
 {
-  "name": "react-month-picker",
-  "version": "0.0.1",
-  "description": "Simple React month picker",
-  "main": "index.js",
+  "name": "simple-react-month-picker",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
+    "@testing-library/jest-dom": "^5.16.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "moment": "^2.29.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.3.3",
+    "web-vitals": "^1.1.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/caedmonm/react-month-picker.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "keywords": [
-    "react",
-    "calendar",
-    "monthpicker",
-    "month picker",
-    "date picker",
-    "months"
-  ],
-  "author": "CAEDMON MULLIN <caedmon.m@gmail.com> (https://caedmonmullin.com)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/caedmonm/react-month-picker/issues"
-  },
-  "homepage": "https://github.com/caedmonm/react-month-picker#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

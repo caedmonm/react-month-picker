@@ -42,7 +42,7 @@ const Selector = ({ presets, onChange }) => {
     if (selected.length === 2) {
       onChange(selected);
     }
-  }, [selected]);
+  }, [selected, onChange]);
 
   const setSelectedLocal = (monthIndex, month) => {
     let ys = [...years];
@@ -113,11 +113,11 @@ const Selector = ({ presets, onChange }) => {
             <Month
               className={
                 m.selected === true ||
-                (selected.length === 2 &&
-                  moment(m.date).isBetween(
-                    moment(selected[0]),
-                    moment(selected[1])
-                  ))
+                  (selected.length === 2 &&
+                    moment(m.date).isBetween(
+                      moment(selected[0]),
+                      moment(selected[1])
+                    ))
                   ? "selected"
                   : ""
               }
