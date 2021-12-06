@@ -16,7 +16,7 @@ const MonthPicker = ({
   const [title, setTitle] = useState(false);
   useEffect(() => {
     updateTitle(value);
-  }, []);
+  });
 
   const updateTitle = v => {
     if (!v || v.length < 2) {
