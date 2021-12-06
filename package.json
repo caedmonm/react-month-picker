@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "private": false,
   "babel": {
     "presets": [
@@ -37,15 +37,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
-    "@testing-library/jest-dom": "^5.16.0",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
     "moment": "^2.29.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "styled-components": "^5.3.3",
-    "web-vitals": "^1.1.2"
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
