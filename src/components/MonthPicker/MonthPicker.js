@@ -8,6 +8,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
   const [selectOpen, setSelectOpen] = useState(false);
   const [title, setTitle] = useState(false);
+
   useEffect(() => {
     updateTitle(value);
   }, []);
@@ -35,13 +36,14 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
   };
 
   const localChange = (v) => {
-    const dates = [
+    updateTitle(v);
+
+		onChange([
       moment(v[0]).startOf("month").toDate(),
       moment(v[1]).endOf("month").toDate(),
-    ];
-    updateTitle(dates);
-    onChange(dates);
-    setTimeout(
+    ])
+
+		setTimeout(
       () => {
         setSelectOpen(false);
       },

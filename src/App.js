@@ -9,23 +9,23 @@ function App() {
         presets={[
           {
             title: "This month",
-            start: moment.utc().startOf("month").toDate(),
-            end: moment.utc().endOf("month").toDate(),
+            start: moment().startOf("month").toDate(),
+            end: moment().endOf("month").toDate(),
           },
           {
             title: "Past 3 months",
-            start: moment.utc().subtract(2, "month").startOf("month").toDate(),
-            end: moment.utc().endOf("month").toDate(),
+            start: moment().subtract(2, "month").startOf("month").toDate(),
+            end: moment().endOf("month").toDate(),
           },
           {
             title: "Past 6 months",
-            start: moment.utc().subtract(5, "month").startOf("month").toDate(),
-            end: moment.utc().endOf("month").toDate(),
+            start: moment().subtract(5, "month").startOf("month").toDate(),
+            end: moment().endOf("month").toDate(),
           },
           {
             title: "Past Year",
-            start: moment.utc().subtract(12, "month").startOf("month").toDate(),
-            end: moment.utc().endOf("month").toDate(),
+            start: moment().subtract(12, "month").startOf("month").toDate(),
+            end: moment().endOf("month").toDate(),
           },
           {
             title: "All time",
