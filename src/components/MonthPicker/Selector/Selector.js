@@ -17,7 +17,7 @@ import {
   faChevronCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Selector = ({ presets, onChange }) => {
+const Selector = ({ presets, onChange, highlightCol }) => {
   const [yearIndex, setYearIndex] = useState(0);
   const [years, setYears] = useState([]);
   const [selected, setSelected] = useState([]);
@@ -112,14 +112,15 @@ const Selector = ({ presets, onChange }) => {
           {year.months.map((m, i) => {
             return (
               <Month
+                highlightCol={highlightCol}
                 className={
                   m.selected === true ||
-                  (selected.length === 2 &&
-                    moment(m.date).isSameOrAfter(
-                      moment(selected[0]),
-                      "month"
-                    ) &&
-                    moment(m.date).isSameOrBefore(moment(selected[1]), "month"))
+                    (selected.length === 2 &&
+                      moment(m.date).isSameOrAfter(
+                        moment(selected[0]),
+                        "month"
+                      ) &&
+                      moment(m.date).isSameOrBefore(moment(selected[1]), "month"))
                     ? "selected"
                     : ""
                 }

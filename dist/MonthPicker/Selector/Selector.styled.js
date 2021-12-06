@@ -11,6 +11,10 @@ export const Modal = styled.div`
   display: flex;
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+  @media (max-width: 425px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 export const Presets = styled.div`
   box-sizing: border-box;
@@ -57,10 +61,11 @@ export const Month = styled.div`
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   }
   &.selected {
-    background-color: #1d7f7a;
+    background-color: ${props => props.highlightCol ? props.highlightCol : "#1d7f7a"};
     color: white;
   }
   pointer-events: ${props => props.disabled ? "none" : "auto"};
   opacity: ${props => props.disabled ? 0.5 : 1};
   cursor: ${props => props.disabled ? "default" : "pointer"};
+  transition: .2s;
 `;

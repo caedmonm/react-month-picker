@@ -14,7 +14,7 @@ export const TitleWrapper = styled.div`
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  padding: 5px 10px;
+  padding: 6px 10px;
 `;
 
 export const SelectedText = styled.div``;

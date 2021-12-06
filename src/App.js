@@ -6,6 +6,7 @@ function App() {
     <div>
       <MonthPicker
         style={{ width: 300, margin: "50px auto" }}
+        highlightCol="#f60"
         presets={[
           {
             title: "This month",
@@ -34,7 +35,7 @@ function App() {
           },
         ]}
         onChange={(range) => console.log(range)}
-				closeDelay={500}
+        closeDelay={500}
       />
     </div>
   );

@@ -26,12 +26,13 @@ The most basic use:
 
 ## Props
 
-| prop         | type    | description                                                                                                                                   |
-| ------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onChange`   | `func`  | Function invoked when start and end dates have been selected, it will be passed an array with the start and end dates: `[startDate, endDate]` |
-| `presets`    | `array` | Array of objects to use as presets: `[{title: "preset title", start: startDate, end: endDate}]`                                               |
-| `closeDelay` | `int`   | Delay in ms before pop-up window closes                                                                                                       |
-| `value`      | `array` | Starting dates: `[startDate, endDate]`                                                                                                        |
+| prop           | type     | description                                                                                                                                   |
+| -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onChange`     | `func`   | Function invoked when start and end dates have been selected, it will be passed an array with the start and end dates: `[startDate, endDate]` |
+| `presets`      | `array`  | Array of objects to use as presets: `[{title: "preset title", start: startDate, end: endDate}]`                                               |
+| `closeDelay`   | `int`    | Delay in ms before pop-up window closes                                                                                                       |
+| `value`        | `array`  | Starting dates: `[startDate, endDate]`                                                                                                        |
+| `highlightCol` | `string` | Colour of selected months                                                                                                                     |
 
 ## Usage Example
 

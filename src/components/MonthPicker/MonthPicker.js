@@ -5,7 +5,7 @@ import Selector from "./Selector/Selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
+const MonthPicker = ({ onChange, value, presets, style, closeDelay, highlightCol }) => {
   const [selectOpen, setSelectOpen] = useState(false);
   const [title, setTitle] = useState(false);
 
@@ -20,12 +20,12 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
     const presetTitle =
       presets && presets.length
         ? presets.find(
-            (p) =>
-              moment(p.start).isSame(moment(v[0]), "month") ||
-              (p.start === v[0] &&
-                moment(p.end).isSame(moment(v[1]), "month")) ||
-              p.end === v[1]
-          )
+          (p) =>
+            moment(p.start).isSame(moment(v[0]), "month") ||
+            (p.start === v[0] &&
+              moment(p.end).isSame(moment(v[1]), "month")) ||
+            p.end === v[1]
+        )
         : null;
 
     return setTitle(
@@ -67,7 +67,7 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
           }}
         />
       </TitleWrapper>
-      {selectOpen && <Selector presets={presets} onChange={localChange} />}
+      {selectOpen && <Selector presets={presets} onChange={localChange} highlightCol={highlightCol} />}
     </Selected>
   );
 };

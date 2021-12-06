@@ -10,7 +10,8 @@ const MonthPicker = ({
   value,
   presets,
   style,
-  closeDelay
+  closeDelay,
+  highlightCol
 }) => {
   const [selectOpen, setSelectOpen] = useState(false);
   const [title, setTitle] = useState(false);
@@ -47,7 +48,8 @@ const MonthPicker = ({
     }
   })), selectOpen && /*#__PURE__*/React.createElement(Selector, {
     presets: presets,
-    onChange: localChange
+    onChange: localChange,
+    highlightCol: highlightCol
   }));
 };
 
