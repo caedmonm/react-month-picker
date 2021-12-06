@@ -32,7 +32,7 @@ The most basic use:
 ## Example
 
 ```
-import MonthPicker from "./components/MonthPicker/MonthPicker";
+import MonthPicker from "simple-react-month-picker";
 ```
 ```
 import moment from "moment";
