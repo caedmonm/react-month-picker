@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "0.0.20",
+  "version": "0.1.0",
   "private": false,
   "babel": {
     "presets": [
@@ -26,7 +26,7 @@
     "date picker",
     "months"
   ],
-	"author": "CAEDMON MULLIN <caedmon.m@gmail.com> (https://caedmonmullin.com)",
+  "author": "CAEDMON MULLIN <caedmon.m@gmail.com> (https://caedmonmullin.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/caedmonm/react-month-picker/issues"

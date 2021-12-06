@@ -3,7 +3,8 @@
 Simple-React-Month-Picker Component offers a popup month selection panel with the option of presets or custom month ranges.
 
 ## Installation
-```npm install simple-react-month-picker --save```
+
+`npm install simple-react-month-picker --save`
 
 ## Snapshots
 
@@ -11,33 +12,33 @@ Customisable preset options list:
 
 ![Preset options](https://user-images.githubusercontent.com/795134/144825642-036e6348-cab4-447d-a7d0-7b18f6ca2350.png)
 
-
 Custom range selection:
 
 ![Custom months](https://user-images.githubusercontent.com/795134/144825638-073bb937-2325-4a7f-884d-d658658a81fd.png)
 
 ## Configuration
 
-The most basic use: 
+The most basic use:
+
 ```
 <MonthPicker onChange={handleChange} />
 ```
 
 ### Props
 
-**onChange** returns an array: `[startDate, endDate]`
+| prop         | type    | description                                                                                                                                   |
+| ------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onChange`   | `func`  | Function invoked when start and end dates have been selected, it will be passed an array with the start and end dates: `[startDate, endDate]` |
+| `presets`    | `array` | Array of objects to use as presets: `[{title: "preset title", start: startDate, end: endDate}]`                                               |
+| `closeDelay` | `int`   | Delay in ms before pop-up window closes                                                                                                       |
+| `value`      | `array` | Starting dates: `[startDate, endDate]`                                                                                                        |
 
-**presets** should be an array of objects: `[{title: "preset title", start: startDate, end: endDate}]`
-
-**closeDelay** delay in ms before pop-up window closes
-
-**value** current value which should be array of two dates:  `[startDate, endDate]`
-
-## Example
+## Usage Example
 
 ```js
 import MonthPicker from "simple-react-month-picker";
 ```
+
 ```jsx
 import moment from "moment";
 
@@ -74,7 +75,7 @@ function App() {
           },
         ]}
         onChange={(range) => console.log(range)}
-				closeDelay={500}
+        closeDelay={500}
       />
     </div>
   );
@@ -82,4 +83,3 @@ function App() {
 
 export default App;
 ```
-
