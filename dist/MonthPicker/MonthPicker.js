@@ -30,7 +30,11 @@ const MonthPicker = ({
 
   const localChange = v => {
     updateTitle(v);
-    onChange([v[0] === null ? null : moment(v[0]).startOf("month").format("YYYY-MM-DDTHH:mm:ss"), v[1] === null ? null : moment(v[1]).endOf("month").format("YYYY-MM-DDTHH:mm:ss")]);
+
+    if (typeof onChange === "function") {
+      onChange([v[0] === null ? null : moment(v[0]).startOf("month").format("YYYY-MM-DDTHH:mm:ss"), v[1] === null ? null : moment(v[1]).endOf("month").format("YYYY-MM-DDTHH:mm:ss")]);
+    }
+
     setTimeout(() => {
       setSelectOpen(false);
     }, closeDelay ? closeDelay : 200);
