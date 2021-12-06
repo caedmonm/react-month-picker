@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "private": false,
   "babel": {
     "presets": [

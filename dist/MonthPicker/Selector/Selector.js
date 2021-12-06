@@ -35,7 +35,7 @@ const Selector = ({
     if (selected.length === 2) {
       onChange(selected);
     }
-  }, [selected, onChange]);
+  }, [selected]);
 
   const setSelectedLocal = (monthIndex, month) => {
     let ys = [...years];
