@@ -25,10 +25,13 @@ The most basic use:
 
 ### Props
 
-*onChange* returns an array: `[startDate, endDate]`
-*presets* should be an array of objects: `[{title: "preset title", start: startDate, end: endDate}]`
-*closeDelay* delay in ms before pop-up window closes
-*value* current value which should be array of two dates:  `[startDate, endDate]`
+**onChange** returns an array: `[startDate, endDate]`
+
+**presets** should be an array of objects: `[{title: "preset title", start: startDate, end: endDate}]`
+
+**closeDelay** delay in ms before pop-up window closes
+
+**value** current value which should be array of two dates:  `[startDate, endDate]`
 
 ## Example
 

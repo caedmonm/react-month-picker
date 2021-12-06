@@ -39,8 +39,8 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
     updateTitle(v);
 
 		onChange([
-      moment(v[0]).startOf("month").toDate(),
-      moment(v[1]).endOf("month").toDate(),
+      moment(v[0]).startOf("month").format('YYYY-MM-DDTHH:mm:ss'),
+      moment(v[1]).endOf("month").format('YYYY-MM-DDTHH:mm:ss'),
     ])
 
 		setTimeout(
