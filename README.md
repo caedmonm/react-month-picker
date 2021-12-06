@@ -35,10 +35,10 @@ The most basic use:
 
 ## Example
 
-```
+```js
 import MonthPicker from "simple-react-month-picker";
 ```
-```
+```jsx
 import moment from "moment";
 
 function App() {
