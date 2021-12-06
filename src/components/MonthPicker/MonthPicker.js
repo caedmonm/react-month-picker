@@ -10,7 +10,7 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
   const [title, setTitle] = useState(false);
   useEffect(() => {
     updateTitle(value);
-  },[]);
+  }, []);
 
   const updateTitle = (v) => {
     if (!v || v.length < 2) {
@@ -35,8 +35,12 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
   };
 
   const localChange = (v) => {
-    updateTitle(v);
-    onChange(v);
+    const dates = [
+      moment(v[0]).startOf("month").toDate(),
+      moment(v[1]).endOf("month").toDate(),
+    ];
+    updateTitle(dates);
+    onChange(dates);
     setTimeout(
       () => {
         setSelectOpen(false);

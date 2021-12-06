@@ -28,8 +28,9 @@ const MonthPicker = ({
   };
 
   const localChange = v => {
-    updateTitle(v);
-    onChange(v);
+    const dates = [moment(v[0]).startOf("month").toDate(), moment(v[1]).endOf("month").toDate()];
+    updateTitle(dates);
+    onChange(dates);
     setTimeout(() => {
       setSelectOpen(false);
     }, closeDelay ? closeDelay : 200);
