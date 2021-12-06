@@ -1,12 +1,17 @@
 {
   "name": "simple-react-month-picker",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "babel": {
     "presets": [
       "@babel/preset-react"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caedmonm/react-month-picker.git"
+  },
+  "description": "Simple React month picker",
   "main": "dist/MonthPicker/MonthPicker.js",
   "module": "dist/MonthPicker/MonthPicker.js",
   "files": [
@@ -34,7 +39,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "publish:npm": "rm -rf dist && mkdir dist && babel ./src/components -d dist --copy-files",
-		"publish:npm_windows": "(if exist dist rmdir /s /q dist) && mkdir dist && babel ./src/components -d dist --copy-files"
+    "publish:npm_windows": "(if exist dist rmdir /s /q dist) && mkdir dist && babel ./src/components -d dist --copy-files"
   },
   "eslintConfig": {
     "extends": [
@@ -58,5 +63,19 @@
     "@babel/cli": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "babel-core": "^7.0.0-bridge.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "calendar",
+    "monthpicker",
+    "month picker",
+    "date picker",
+    "months"
+  ],
+	"author": "CAEDMON MULLIN <caedmon.m@gmail.com> (https://caedmonmullin.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caedmonm/react-month-picker/issues"
+  },
+  "homepage": "https://github.com/caedmonm/react-month-picker#readme"
 }

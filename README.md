@@ -8,10 +8,10 @@ Simple-React-Month-Picker Component offers a popup month selection panel with th
 ## Snapshots
 
 Customisable preset options list:
-![Preset options](./screenshots/preset.png)
+![Preset options](https://user-images.githubusercontent.com/795134/144825642-036e6348-cab4-447d-a7d0-7b18f6ca2350.png)
 
 Custom range selection:
-![Custom months](./screenshots/custom.png)
+![Custom months](https://user-images.githubusercontent.com/795134/144825638-073bb937-2325-4a7f-884d-d658658a81fd.png)
 
 ## Configuration
 
