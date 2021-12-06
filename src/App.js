@@ -1,5 +1,5 @@
 import './App.css';
-import MonthPicker from './MonthPicker/MonthPicker';
+import MonthPicker from './components/MonthPicker/MonthPicker';
 import moment from 'moment';
 
 function App() {

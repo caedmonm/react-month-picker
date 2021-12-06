@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { memo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Selected, SelectedText, TitleWrapper } from "./MonthPicker.styled";
 import Selector from "./Selector/Selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -56,4 +56,4 @@ const MonthPicker = ({ onChange, value, presets, style }) => {
   );
 };
 
-export default memo(MonthPicker);
+export default MonthPicker;
