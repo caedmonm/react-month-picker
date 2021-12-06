@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "babel": {
     "presets": [
@@ -33,7 +33,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish:npm": "rm -rf dist && mkdir dist && babel ./src/components -d dist --copy-files"
+    "publish:npm": "rm -rf dist && mkdir dist && babel ./src/components -d dist --copy-files",
+		"publish:npm_windows": "(if exist dist rmdir /s /q dist) && mkdir dist && babel ./src/components -d dist --copy-files"
   },
   "eslintConfig": {
     "extends": [

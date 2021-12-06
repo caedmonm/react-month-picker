@@ -5,38 +5,44 @@ import Selector from "./Selector/Selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-const MonthPicker = ({ onChange, value, presets, style }) => {
+const MonthPicker = ({ onChange, value, presets, style, closeDelay }) => {
   const [selectOpen, setSelectOpen] = useState(false);
   const [title, setTitle] = useState(false);
-  const [currentVal, setCurrentVal] = useState(value);
-
   useEffect(() => {
-    if (!currentVal || currentVal.length < 2) {
+    updateTitle(value);
+  }, []);
+
+  const updateTitle = (v) => {
+    if (!v || v.length < 2) {
       return setTitle("No dates selected");
     }
-    const presetTitle = presets && presets.length
-      ? presets.find(
-        (p) =>
-          (moment(p.start).isSame(moment(currentVal[0]), "month") || p.start) === currentVal[0] &&
-          (moment(p.end).isSame(moment(currentVal[1]), "month") || p.end) === currentVal[1]
-      )
-      : null;
+    const presetTitle =
+      presets && presets.length
+        ? presets.find(
+            (p) =>
+              moment(p.start).isSame(moment(v[0]), "month") ||
+              (p.start === v[0] &&
+                moment(p.end).isSame(moment(v[1]), "month")) ||
+              p.end === v[1]
+          )
+        : null;
+
     return setTitle(
       presetTitle
         ? presetTitle.title
-        : moment(currentVal[0]).format("MMM YY") + " - " + moment(currentVal[1]).format("MMM YY")
+        : moment(v[0]).format("MMM YY") + " - " + moment(v[1]).format("MMM YY")
     );
-  }, [currentVal, presets]);
+  };
 
   const localChange = (v) => {
-    setCurrentVal(v);
-    if (typeof onChange === "function") {
-      onChange(v);
-    }
-
-    setTimeout(() => {
-      setSelectOpen(false);
-    }, 200);
+    updateTitle(v);
+    onChange(v);
+    setTimeout(
+      () => {
+        setSelectOpen(false);
+      },
+      closeDelay ? closeDelay : 200
+    );
   };
 
   return (

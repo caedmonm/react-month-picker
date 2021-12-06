@@ -109,25 +109,28 @@ const Selector = ({ presets, onChange }) => {
           />
         </YearPicker>
         <Months>
-          {year.months.map((m, i) => (
-            <Month
-              className={
-                m.selected === true ||
+          {year.months.map((m, i) => {
+            return (
+              <Month
+                className={
+                  m.selected === true ||
                   (selected.length === 2 &&
-                    moment(m.date).isBetween(
+                    moment(m.date).isSameOrAfter(
                       moment(selected[0]),
-                      moment(selected[1])
-                    ))
-                  ? "selected"
-                  : ""
-              }
-              disabled={moment(m.date).isAfter(moment().endOf("month"))}
-              key={i}
-              onClick={(e) => setSelectedLocal(i, m)}
-            >
-              {m.selected} {moment(m.date).format("MMM")}
-            </Month>
-          ))}
+                      "month"
+                    ) &&
+                    moment(m.date).isSameOrBefore(moment(selected[1]), "month"))
+                    ? "selected"
+                    : ""
+                }
+                disabled={moment(m.date).isAfter(moment().endOf("month"))}
+                key={i}
+                onClick={(e) => setSelectedLocal(i, m)}
+              >
+                {m.selected} {moment(m.date).format("MMM")}
+              </Month>
+            );
+          })}
         </Months>
       </MonthPicker>
     </Modal>

@@ -87,12 +87,14 @@ const Selector = ({
       cursor: yearIndex === years.length - 1 ? "default" : "pointer"
     },
     onClick: e => yearIndex < years.length - 1 ? setYearIndex(yearIndex + 1) : null
-  })), /*#__PURE__*/React.createElement(Months, null, year.months.map((m, i) => /*#__PURE__*/React.createElement(Month, {
-    className: m.selected === true || selected.length === 2 && moment(m.date).isBetween(moment(selected[0]), moment(selected[1])) ? "selected" : "",
-    disabled: moment(m.date).isAfter(moment().endOf("month")),
-    key: i,
-    onClick: e => setSelectedLocal(i, m)
-  }, m.selected, " ", moment(m.date).format("MMM"))))));
+  })), /*#__PURE__*/React.createElement(Months, null, year.months.map((m, i) => {
+    return /*#__PURE__*/React.createElement(Month, {
+      className: m.selected === true || selected.length === 2 && moment(m.date).isSameOrAfter(moment(selected[0]), "month") && moment(m.date).isSameOrBefore(moment(selected[1]), "month") ? "selected" : "",
+      disabled: moment(m.date).isAfter(moment().endOf("month")),
+      key: i,
+      onClick: e => setSelectedLocal(i, m)
+    }, m.selected, " ", moment(m.date).format("MMM"));
+  }))));
 };
 
 export default /*#__PURE__*/memo(Selector);
