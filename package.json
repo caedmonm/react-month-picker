@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "private": false,
   "babel": {
     "presets": [
@@ -33,7 +33,6 @@
   },
   "homepage": ".",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
@@ -70,5 +69,12 @@
     "@babel/cli": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "babel-core": "^7.0.0-bridge.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.3.3",
+    "web-vitals": "^1.1.2"
   }
 }
