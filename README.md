@@ -38,7 +38,7 @@ The most basic use:
 
 ### Online demo
 
-https://codesandbox.io/s/simple-react-month-picker-d5i0v?file=/src/App.js
+https://codesandbox.io/s/simple-react-month-picker-p9uhe
 
 ### Code sample
 
