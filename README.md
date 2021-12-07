@@ -36,6 +36,12 @@ The most basic use:
 
 ## Usage Example
 
+### Online demo
+
+https://codesandbox.io/s/simple-react-month-picker-d5i0v?file=/src/App.js
+
+### Code sample
+
 ```js
 import MonthPicker from "simple-react-month-picker";
 ```
