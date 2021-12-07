@@ -5,7 +5,14 @@ import Selector from "./Selector/Selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-const MonthPicker = ({ onChange, value, presets, style, closeDelay, highlightCol }) => {
+const MonthPicker = ({
+  onChange,
+  value,
+  presets,
+  style,
+  closeDelay,
+  highlightCol,
+}) => {
   const [selectOpen, setSelectOpen] = useState(false);
   const [title, setTitle] = useState(false);
 
@@ -17,15 +24,15 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay, highlightCol
     if (!v || v.length < 2) {
       return setTitle("No dates selected");
     }
+		
     const presetTitle =
       presets && presets.length
         ? presets.find(
-          (p) =>
-            moment(p.start).isSame(moment(v[0]), "month") ||
-            (p.start === v[0] &&
-              moment(p.end).isSame(moment(v[1]), "month")) ||
-            p.end === v[1]
-        )
+            (p) =>
+              (moment(p.start).isSame(moment(v[0]), "month") ||
+                p.start === v[0]) &&
+              (moment(p.end).isSame(moment(v[1]), "month") || p.end === v[1])
+          )
         : null;
 
     return setTitle(
@@ -38,7 +45,7 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay, highlightCol
   const localChange = (v) => {
     updateTitle(v);
 
-    if (typeof (onChange) === "function") {
+    if (typeof onChange === "function") {
       onChange([
         v[0] === null
           ? null
@@ -69,7 +76,13 @@ const MonthPicker = ({ onChange, value, presets, style, closeDelay, highlightCol
           }}
         />
       </TitleWrapper>
-      {selectOpen && <Selector presets={presets} onChange={localChange} highlightCol={highlightCol} />}
+      {selectOpen && (
+        <Selector
+          presets={presets}
+          onChange={localChange}
+          highlightCol={highlightCol}
+        />
+      )}
     </Selected>
   );
 };

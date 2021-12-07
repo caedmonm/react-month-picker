@@ -24,7 +24,7 @@ const MonthPicker = ({
       return setTitle("No dates selected");
     }
 
-    const presetTitle = presets && presets.length ? presets.find(p => moment(p.start).isSame(moment(v[0]), "month") || p.start === v[0] && moment(p.end).isSame(moment(v[1]), "month") || p.end === v[1]) : null;
+    const presetTitle = presets && presets.length ? presets.find(p => (moment(p.start).isSame(moment(v[0]), "month") || p.start === v[0]) && (moment(p.end).isSame(moment(v[1]), "month") || p.end === v[1])) : null;
     return setTitle(presetTitle ? presetTitle.title : moment(v[0]).format("MMM YY") + " - " + moment(v[1]).format("MMM YY"));
   };
 
