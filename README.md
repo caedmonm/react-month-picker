@@ -102,6 +102,25 @@ npm run build
 npm run build:watch
 ```
 
+### Local test application
+
+A Vite-powered playground lives in `test-app/` to make it easier to iterate on the
+month picker while developing.
+
+```bash
+# Terminal 1: keep the library build up to date
+npm run build:watch
+
+# Terminal 2: run the playground
+cd test-app
+npm install
+npm run dev
+```
+
+The playground depends on the local package via `file:..`, so keeping the watch
+build running ensures any source changes are immediately available in the test
+app.
+
 ## License
 
 MIT
