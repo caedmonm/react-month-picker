@@ -1,17 +1,11 @@
+// vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  plugins: [
-    tailwindcss(),
-    react({
-      babel: {
-        plugins: [["babel-plugin-react-compiler"]],
-      },
-    }),
-  ],
+  plugins: [tailwindcss(), react()],
   build: {
     lib: {
       entry: path.resolve(
@@ -20,19 +14,18 @@ export default defineConfig({
       ),
       name: "SimpleReactMonthPicker",
       fileName: "index",
-      formats: ["es"],
+      formats: ["es", "cjs"],
     },
     rollupOptions: {
-      // Exclude peer deps from the bundle
-      external: ["react", "react-dom", "dayjs"],
+      external: ["react", "react-dom"],
       output: {
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
-          dayjs: "dayjs",
         },
       },
     },
-    outDir: "dist", // ensure this matches what's in your package.json
+    outDir: "dist",
+    sourcemap: true,
   },
 });
