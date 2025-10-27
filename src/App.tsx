@@ -1,28 +1,42 @@
-import dayjs from "dayjs";
 import { MonthPicker, type MonthPreset } from "./components";
 import "./App.css";
 
+function getStartOfMonth(date: Date): Date {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
+function getEndOfMonth(date: Date): Date {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999);
+}
+
+function addMonths(date: Date, months: number): Date {
+  const newDate = new Date(date);
+  newDate.setMonth(date.getMonth() + months);
+  return newDate;
+}
+
 function App() {
+  const now = new Date();
   const presets: MonthPreset[] = [
     {
       title: "This month",
-      start: dayjs().startOf("month").toDate(),
-      end: dayjs().endOf("month").toDate(),
+      start: getStartOfMonth(now),
+      end: getEndOfMonth(now),
     },
     {
       title: "Past 3 months",
-      start: dayjs().subtract(2, "month").startOf("month").toDate(),
-      end: dayjs().endOf("month").toDate(),
+      start: getStartOfMonth(addMonths(now, -2)),
+      end: getEndOfMonth(now),
     },
     {
       title: "Past 6 months",
-      start: dayjs().subtract(5, "month").startOf("month").toDate(),
-      end: dayjs().endOf("month").toDate(),
+      start: getStartOfMonth(addMonths(now, -5)),
+      end: getEndOfMonth(now),
     },
     {
       title: "This Year",
-      start: dayjs().startOf("year").toDate(),
-      end: dayjs().endOf("year").toDate(),
+      start: new Date(now.getFullYear(), 0, 1),
+      end: new Date(now.getFullYear(), 11, 31, 23, 59, 59, 999),
     },
   ];
 

@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": false,
   "description": "Simple React month picker",
   "type": "module",
@@ -42,12 +42,11 @@
     "url": "https://github.com/caedmonm/react-month-picker.git"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.16",
-    "dayjs": "^1.11.18"
+    "@tailwindcss/vite": "^4.1.16"
   },
   "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
@@ -60,6 +59,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "tailwindcss": "^4.1.16",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",

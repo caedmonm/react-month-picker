@@ -1,15 +1,32 @@
 import React, { useEffect, useMemo, useState } from "react";
-
 import Selector from "./Selector/Selector";
 import type {
   MonthPickerProps,
   MonthRangeValue,
   MonthPreset,
 } from "./MonthPicker.types";
-import dayjs from "dayjs";
 
 const DEFAULT_TITLE = "No dates selected";
 
+// --- Utility functions ---
+
+const isSameMonth = (a: Date, b: Date): boolean =>
+  a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+
+const getStartOfMonth = (date: Date): Date =>
+  new Date(date.getFullYear(), date.getMonth(), 1);
+
+const getEndOfMonth = (date: Date): Date =>
+  new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999);
+
+const formatMonthYear = (date: Date): string => {
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    year: "2-digit",
+  }).format(date);
+};
+
+// --- Core logic ---
 const isMatchingPreset = (
   preset: MonthPreset,
   value: MonthRangeValue
@@ -20,10 +37,8 @@ const isMatchingPreset = (
     return false;
   }
 
-  const matchesStart =
-    dayjs(preset.start).isSame(dayjs(start), "month") || preset.start === start;
-  const matchesEnd =
-    dayjs(preset.end).isSame(dayjs(end), "month") || preset.end === end;
+  const matchesStart = isSameMonth(preset.start, start);
+  const matchesEnd = isSameMonth(preset.end, end);
 
   return matchesStart && matchesEnd;
 };
@@ -35,7 +50,7 @@ const formatRangeTitle = (range: MonthRangeValue): string => {
     return DEFAULT_TITLE;
   }
 
-  return `${dayjs(start).format("MMM YY")} - ${dayjs(end).format("MMM YY")}`;
+  return `${formatMonthYear(start)} - ${formatMonthYear(end)}`;
 };
 
 const MonthPicker: React.FC<MonthPickerProps> = ({
@@ -80,12 +95,8 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
     if (typeof onChange === "function") {
       const [start, end] = range;
       onChange([
-        start === null
-          ? null
-          : dayjs(start).startOf("month").format("YYYY-MM-DDTHH:mm:ss"),
-        end === null
-          ? null
-          : dayjs(end).endOf("month").format("YYYY-MM-DDTHH:mm:ss"),
+        start === null ? null : getStartOfMonth(start).toISOString(),
+        end === null ? null : getEndOfMonth(end).toISOString(),
       ]);
     }
 

@@ -1,14 +1,5 @@
-import dayjs from "dayjs";
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import React, { memo, useEffect, useMemo, useState } from "react";
-
-dayjs.extend(isSameOrAfter);
-dayjs.extend(isSameOrBefore);
-
 import type { MonthPreset, MonthRangeValue } from "../MonthPicker.types";
-
-type DayjsInput = dayjs.Dayjs | Date | string | null;
 
 type SelectorProps = {
   presets?: MonthPreset[];
@@ -26,30 +17,40 @@ type YearDefinition = {
   months: MonthDefinition[];
 };
 
+// ---- Date helpers (month-level comparisons) ----
+const endOfMonth = (d: Date) =>
+  new Date(d.getFullYear(), d.getMonth() + 1, 0, 23, 59, 59, 999);
+
+const cmpMonth = (a: Date, b: Date) => {
+  const ay = a.getFullYear(),
+    by = b.getFullYear();
+  if (ay !== by) return ay - by;
+  return a.getMonth() - b.getMonth();
+};
+const isBeforeMonth = (a: Date, b: Date) => cmpMonth(a, b) < 0;
+const isSameOrAfterMonth = (a: Date, b: Date) => cmpMonth(a, b) >= 0;
+const isSameOrBeforeMonth = (a: Date, b: Date) => cmpMonth(a, b) <= 0;
+
+const formatMonthShort = (d: Date) =>
+  new Intl.DateTimeFormat("en", { month: "short" }).format(d);
+
+// ---- Component utils ----
 const createYears = (): YearDefinition[] => {
-  const currentYear = Number(dayjs().format("YYYY"));
+  const currentYear = new Date().getFullYear();
   const years: YearDefinition[] = [];
 
   for (let year = 2010; year <= currentYear; year += 1) {
-    const months: MonthDefinition[] = Array.from({ length: 12 }, (_, index) => {
-      const monthIndex = index + 1;
-      const date = dayjs(`${year}-${monthIndex}-01 00:00:00`).toDate();
-
-      return {
-        selected: false,
-        date,
-      };
+    const months: MonthDefinition[] = Array.from({ length: 12 }, (_, idx) => {
+      const date = new Date(year, idx, 1);
+      return { selected: false, date };
     });
-
     years.push({ year, months });
   }
-
   return years;
 };
 
-const normalizeRange = (value: DayjsInput[]): MonthRangeValue => {
+const normalizeRange = (value: (Date | null)[]): MonthRangeValue => {
   const [start, end] = value;
-
   return [start ?? null, end ?? null];
 };
 
@@ -60,7 +61,7 @@ const Selector: React.FC<SelectorProps> = ({
 }) => {
   const [yearIndex, setYearIndex] = useState(0);
   const [years, setYears] = useState<YearDefinition[]>([]);
-  const [selected, setSelected] = useState<DayjsInput[]>([]);
+  const [selected, setSelected] = useState<(Date | null)[]>([]);
 
   const presetList = useMemo(() => presets ?? [], [presets]);
 
@@ -79,37 +80,22 @@ const Selector: React.FC<SelectorProps> = ({
   const setSelectedLocal = (monthIndex: number, month: MonthDefinition) => {
     setYears((currentYears) =>
       currentYears.map((definition, index) => {
-        if (index !== yearIndex) {
-          return definition;
-        }
+        if (index !== yearIndex) return definition;
 
-        const months = definition.months.map((monthDefinition, idx) =>
-          idx === monthIndex
-            ? {
-                ...monthDefinition,
-                selected: true,
-              }
-            : monthDefinition
+        const months = definition.months.map((m, idx) =>
+          idx === monthIndex ? { ...m, selected: true } : m
         );
-
-        return {
-          ...definition,
-          months,
-        };
+        return { ...definition, months };
       })
     );
 
     setSelected((currentSelected) => {
-      if (!currentSelected.length) {
-        return [month.date];
-      }
+      if (!currentSelected.length) return [month.date];
 
       const [first] = currentSelected;
-
-      if (first && dayjs(first).isBefore(dayjs(month.date))) {
+      if (first && isBeforeMonth(first, month.date)) {
         return [first, month.date];
       }
-
       return [month.date, first ?? month.date];
     });
   };
@@ -119,10 +105,9 @@ const Selector: React.FC<SelectorProps> = ({
   };
 
   const year = years[yearIndex];
+  if (!year) return null;
 
-  if (!year) {
-    return null;
-  }
+  const endOfThisMonth = endOfMonth(new Date());
 
   return (
     <div className="absolute top-[35px] right-0 z-[99999] w-[460px] flex flex-row rounded-[5px] border border-[#eee] bg-white shadow-[0_0_10px_0_rgb(0_0_0_/_20%)] max-[425px]:w-full max-[425px]:flex-col">
@@ -154,13 +139,13 @@ const Selector: React.FC<SelectorProps> = ({
             onClick={() => (yearIndex ? setYearIndex(yearIndex - 1) : null)}
             disabled={!yearIndex}
             className={`
-      w-5 h-5 
-      ${
-        !yearIndex
-          ? "opacity-20 cursor-default"
-          : "cursor-pointer hover:opacity-70"
-      }
-    `}
+              w-5 h-5
+              ${
+                !yearIndex
+                  ? "opacity-20 cursor-default"
+                  : "cursor-pointer hover:opacity-70"
+              }
+            `}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -187,13 +172,13 @@ const Selector: React.FC<SelectorProps> = ({
             }
             disabled={yearIndex === years.length - 1}
             className={`
-      w-5 h-5 
-      ${
-        yearIndex === years.length - 1
-          ? "opacity-20 cursor-default"
-          : "cursor-pointer hover:opacity-70"
-      }
-    `}
+              w-5 h-5
+              ${
+                yearIndex === years.length - 1
+                  ? "opacity-20 cursor-default"
+                  : "cursor-pointer hover:opacity-70"
+              }
+            `}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -212,21 +197,18 @@ const Selector: React.FC<SelectorProps> = ({
 
         <div className="grid grid-cols-4 gap-[5px] mt-[10px]">
           {year.months.map((definition, index) => {
-            const isSelected =
-              definition.selected === true ||
-              (selected.length === 2 &&
-                dayjs(definition.date).isSameOrAfter(
-                  dayjs(selected[0]),
-                  "month"
-                ) &&
-                dayjs(definition.date).isSameOrBefore(
-                  dayjs(selected[1]),
-                  "month"
-                ));
+            const [selStart, selEnd] = selected as [Date | null, Date | null];
 
-            const isDisabled = dayjs(definition.date).isAfter(
-              dayjs().endOf("month")
-            );
+            const inRange =
+              selStart &&
+              selEnd &&
+              isSameOrAfterMonth(definition.date, selStart) &&
+              isSameOrBeforeMonth(definition.date, selEnd);
+
+            const isSelected = definition.selected === true || !!inRange;
+
+            const isDisabled =
+              endOfMonth(definition.date).getTime() > endOfThisMonth.getTime();
 
             // Provide a fallback highlight colour via CSS var for Tailwind arbitrary value
             const highlight = highlightCol ?? "#1d7f7a";
@@ -238,7 +220,6 @@ const Selector: React.FC<SelectorProps> = ({
                 onClick={() => setSelectedLocal(index, definition)}
                 disabled={isDisabled}
                 aria-disabled={isDisabled}
-                // Use a CSS var to let Tailwind apply a dynamic bg color safely
                 style={
                   isSelected
                     ? ({ ["--hc"]: highlight } as React.CSSProperties)
@@ -253,7 +234,7 @@ const Selector: React.FC<SelectorProps> = ({
                     : "cursor-pointer",
                 ].join(" ")}
               >
-                {dayjs(definition.date).format("MMM")}
+                {formatMonthShort(definition.date)}
               </button>
             );
           })}
