@@ -76,7 +76,7 @@ const MonthPicker = React.forwardRef<HTMLDivElement, MonthPickerProps>(
         const endBound = end ? getEndOfMonth(end) : null;
 
         if (startBound && endBound) {
-          onChange({ start: startBound, end: endBound });
+          onChange([startBound, endBound]);
         }
       }
 

@@ -10,7 +10,7 @@ export interface MonthPreset {
 }
 
 export interface MonthPickerProps {
-  onChange?: (dateRange: { start: Date; end: Date }) => void;
+  onChange?: (dateRange: [Date, Date]) => void;
   value?: MonthRangeValue;
   presets?: MonthPreset[];
   style?: CSSProperties;
