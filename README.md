@@ -1,92 +1,81 @@
-# Simple React Month Picker
+# simple-react-month-picker
 
-Simple-React-Month-Picker Component offers a popup month selection panel with the option of presets or custom month ranges.
+A simple and lightweight React month picker component built with TypeScript.
 
 ## Installation
 
-`yarn add simple-react-month-picker`
-
-## Snapshots
-
-Customisable preset options list:
-
-![Preset options](https://user-images.githubusercontent.com/795134/144825642-036e6348-cab4-447d-a7d0-7b18f6ca2350.png)
-
-Custom range selection:
-
-![Custom months](https://user-images.githubusercontent.com/795134/144825638-073bb937-2325-4a7f-884d-d658658a81fd.png)
-
-## Configuration
-
-The most basic use:
-
+```bash
+npm install simple-react-month-picker
 ```
-<MonthPicker onChange={handleChange} />
+
+## Usage
+
+### Option 1: Default Import (Recommended)
+```tsx
+import React, { useState } from 'react';
+import MonthPicker from 'simple-react-month-picker';
+
+function App() {
+  const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
+
+  const handleChange = (dateRange: { start: Date | null; end: Date | null }) => {
+    setValue([dateRange.start, dateRange.end]);
+  };
+
+  return (
+    <MonthPicker
+      value={value}
+      onChange={handleChange}
+    />
+  );
+}
+```
+
+### Option 2: Named Import
+```tsx
+import React, { useState } from 'react';
+import { MonthPicker } from 'simple-react-month-picker';
+
+function App() {
+  const [value, setValue] = useState<[Date | null, Date | null]>([null, null]);
+
+  const handleChange = (dateRange: { start: Date | null; end: Date | null }) => {
+    setValue([dateRange.start, dateRange.end]);
+  };
+
+  return (
+    <MonthPicker
+      value={value}
+      onChange={handleChange}
+    />
+  );
+}
 ```
 
 ## Props
 
-| prop           | type     | description                                                                                                                                   |
-| -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onChange`     | `func`   | Function invoked when start and end dates have been selected, it will be passed an array with the start and end dates: `[startDate, endDate]` |
-| `presets`      | `array`  | Array of objects to use as presets: `[{title: "preset title", start: startDate, end: endDate}]`                                               |
-| `closeDelay`   | `int`    | Delay in ms before pop-up window closes                                                                                                       |
-| `value`        | `array`  | Starting dates: `[startDate, endDate]`                                                                                                        |
-| `highlightCol` | `string` | Colour of selected months                                                                                                                     |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `[Date \| null, Date \| null]` | - | Selected date range [start, end] |
+| `onChange` | `(dateRange: { start: Date \| null; end: Date \| null }) => void` | - | Callback when selection changes |
+| `presets` | `MonthPreset[]` | - | Predefined date range options |
+| `style` | `CSSProperties` | - | Additional CSS styles |
+| `closeDelay` | `number` | `200` | Delay before closing selector (ms) |
+| `highlightCol` | `string` | - | Color for highlighting selected range |
 
-## Usage Example
+## Development
 
-### Online demo
+```bash
+# Install dependencies
+npm install
 
-https://codesandbox.io/s/simple-react-month-picker-p9uhe
+# Build the library
+npm run build
 
-### Code sample
-
-```js
-import MonthPicker from "simple-react-month-picker";
+# Build in watch mode
+npm run build:watch
 ```
 
-```jsx
-import dayjs from "dayjs";
+## License
 
-function App() {
-  return (
-    <div>
-      <MonthPicker
-        style={{ width: 300, margin: "50px auto" }}
-        presets={[
-          {
-            title: "This month",
-            start: dayjs().startOf("month").toDate(),
-            end: dayjs().endOf("month").toDate(),
-          },
-          {
-            title: "Past 3 months",
-            start: dayjs().subtract(2, "month").startOf("month").toDate(),
-            end: dayjs().endOf("month").toDate(),
-          },
-          {
-            title: "Past 6 months",
-            start: dayjs().subtract(5, "month").startOf("month").toDate(),
-            end: dayjs().endOf("month").toDate(),
-          },
-          {
-            title: "Past Year",
-            start: dayjs().subtract(12, "month").startOf("month").toDate(),
-            end: dayjs().endOf("month").toDate(),
-          },
-          {
-            title: "All time",
-            start: null,
-            end: null,
-          },
-        ]}
-        onChange={(range) => console.log(range)}
-        closeDelay={500}
-      />
-    </div>
-  );
-}
-
-export default App;
-```
+MIT

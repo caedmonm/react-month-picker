@@ -1,21 +1,25 @@
 {
   "name": "simple-react-month-picker",
-  "version": "1.0.9",
-  "private": false,
-  "description": "Simple React month picker",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build && tsc --project tsconfig.build.json",
-    "lint": "eslint .",
-    "preview": "vite preview"
+  "version": "1.1.0",
+  "description": "A simple React month picker component",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "files": [
-    "dist",
-    "README.md"
+    "dist"
   ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
   "keywords": [
     "react",
     "calendar",
@@ -30,30 +34,16 @@
     "url": "https://github.com/caedmonm/react-month-picker/issues"
   },
   "homepage": "https://github.com/caedmonm/react-month-picker",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/caedmonm/react-month-picker.git"
-  },
   "peerDependencies": {
-    "react": ">=18.2 <20",
-    "react-dom": ">=18.2 <20"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.36.0",
-    "@types/node": "^24.6.0",
-    "@types/react": "^19.1.16",
-    "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^5.0.4",
-    "eslint": "^9.36.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.22",
-    "globals": "^16.4.0",
-    "react": "19.1.1",
-    "react-dom": "19.1.1",
-    "tailwindcss": "^4.1.16",
-    "@tailwindcss/vite": "^4.1.16",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.45.0",
-    "vite": "^7.1.7"
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.6.3"
   }
 }

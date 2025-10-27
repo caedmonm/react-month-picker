@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
-import type { MonthPreset, MonthRangeValue } from "../MonthPicker.types";
+import type { MonthPreset, MonthRangeValue } from "../types";
 
 type SelectorProps = {
   presets?: MonthPreset[];
