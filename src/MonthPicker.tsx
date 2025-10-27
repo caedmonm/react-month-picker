@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Selector from "./Selector/Selector";
 import type { MonthPickerProps, MonthRangeValue, MonthPreset } from "./types";
+import "./styles/tailwind.css";
 
 const DEFAULT_TITLE = "No dates selected";
 

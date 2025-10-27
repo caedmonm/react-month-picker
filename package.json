@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "1.1.7",
+  "version": "1.1.9",
   "description": "A simple React month picker component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,19 +9,17 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles.css": "./styles.css"
+    "./styles.css": "./dist/styles.css"
   },
   "type": "module",
   "sideEffects": false,
   "files": [
     "dist",
-    "styles.css",
     "package.json",
     "README.md"
   ],
   "scripts": {
-    "build": "npm run build:css && tsc && npm run build:copy-style",
-    "build:copy-style": "cpy dist/styles.css .",
+    "build": "npm run build:css && tsc",
     "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./dist/styles.css --minify",
     "build:css:watch": "tailwindcss -i ./src/styles/tailwind.css -o ./dist/styles.css --watch",
     "build:watch": "npm run build:css && tsc --watch",
@@ -55,7 +53,6 @@
     "react-dom": "^18.3.1",
     "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.18",
-    "typescript": "^5.6.3",
-    "cpy-cli": "^5.0.0"
+    "typescript": "^5.6.3"
   }
 }
