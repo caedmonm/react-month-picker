@@ -13,11 +13,17 @@ export default defineConfig({
         "src/components/MonthPicker/MonthPicker.tsx"
       ),
       name: "SimpleReactMonthPicker",
-      fileName: "index",
+      fileName: (format) => (format === "es" ? "index.js" : "index.cjs"),
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["react", "react-dom"],
+      external: [
+        "react",
+        "react-dom",
+        // IMPORTANT: externalize JSX runtimes too
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+      ],
       output: {
         globals: {
           react: "React",
