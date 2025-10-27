@@ -4,7 +4,7 @@ Simple-React-Month-Picker Component offers a popup month selection panel with th
 
 ## Installation
 
-`npm install simple-react-month-picker --save`
+`yarn add simple-react-month-picker`
 
 ## Snapshots
 
@@ -47,7 +47,7 @@ import MonthPicker from "simple-react-month-picker";
 ```
 
 ```jsx
-import moment from "moment";
+import dayjs from "dayjs";
 
 function App() {
   return (
@@ -57,23 +57,23 @@ function App() {
         presets={[
           {
             title: "This month",
-            start: moment().startOf("month").toDate(),
-            end: moment().endOf("month").toDate(),
+            start: dayjs().startOf("month").toDate(),
+            end: dayjs().endOf("month").toDate(),
           },
           {
             title: "Past 3 months",
-            start: moment().subtract(2, "month").startOf("month").toDate(),
-            end: moment().endOf("month").toDate(),
+            start: dayjs().subtract(2, "month").startOf("month").toDate(),
+            end: dayjs().endOf("month").toDate(),
           },
           {
             title: "Past 6 months",
-            start: moment().subtract(5, "month").startOf("month").toDate(),
-            end: moment().endOf("month").toDate(),
+            start: dayjs().subtract(5, "month").startOf("month").toDate(),
+            end: dayjs().endOf("month").toDate(),
           },
           {
             title: "Past Year",
-            start: moment().subtract(12, "month").startOf("month").toDate(),
-            end: moment().endOf("month").toDate(),
+            start: dayjs().subtract(12, "month").startOf("month").toDate(),
+            end: dayjs().endOf("month").toDate(),
           },
           {
             title: "All time",

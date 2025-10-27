@@ -1,23 +1,29 @@
-import moment from "moment";
 import React, { useEffect, useMemo, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 import Selector from "./Selector/Selector";
-import { Selected, SelectedText, TitleWrapper } from "./MonthPicker.styled";
-import type { MonthPickerProps, MonthRangeValue, MonthPreset } from "./MonthPicker.types";
+import type {
+  MonthPickerProps,
+  MonthRangeValue,
+  MonthPreset,
+} from "./MonthPicker.types";
+import dayjs from "dayjs";
 
 const DEFAULT_TITLE = "No dates selected";
 
-const isMatchingPreset = (preset: MonthPreset, value: MonthRangeValue): boolean => {
+const isMatchingPreset = (
+  preset: MonthPreset,
+  value: MonthRangeValue
+): boolean => {
   const [start, end] = value;
 
   if (start === null || end === null) {
     return false;
   }
 
-  const matchesStart = moment(preset.start).isSame(moment(start), "month") || preset.start === start;
-  const matchesEnd = moment(preset.end).isSame(moment(end), "month") || preset.end === end;
+  const matchesStart =
+    dayjs(preset.start).isSame(dayjs(start), "month") || preset.start === start;
+  const matchesEnd =
+    dayjs(preset.end).isSame(dayjs(end), "month") || preset.end === end;
 
   return matchesStart && matchesEnd;
 };
@@ -29,7 +35,7 @@ const formatRangeTitle = (range: MonthRangeValue): string => {
     return DEFAULT_TITLE;
   }
 
-  return `${moment(start).format("MMM YY")} - ${moment(end).format("MMM YY")}`;
+  return `${dayjs(start).format("MMM YY")} - ${dayjs(end).format("MMM YY")}`;
 };
 
 const MonthPicker: React.FC<MonthPickerProps> = ({
@@ -74,8 +80,12 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
     if (typeof onChange === "function") {
       const [start, end] = range;
       onChange([
-        start === null ? null : moment(start).startOf("month").format("YYYY-MM-DDTHH:mm:ss"),
-        end === null ? null : moment(end).endOf("month").format("YYYY-MM-DDTHH:mm:ss"),
+        start === null
+          ? null
+          : dayjs(start).startOf("month").format("YYYY-MM-DDTHH:mm:ss"),
+        end === null
+          ? null
+          : dayjs(end).endOf("month").format("YYYY-MM-DDTHH:mm:ss"),
       ]);
     }
 
@@ -87,17 +97,19 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
   };
 
   return (
-    <Selected style={style}>
-      <TitleWrapper onClick={() => setSelectOpen((previous) => !previous)}>
-        <SelectedText>{title}</SelectedText>
-        <FontAwesomeIcon
-          icon={faChevronDown}
-          style={{
-            width: 14,
-            height: 14,
-          }}
-        />
-      </TitleWrapper>
+    <div
+      className="border border-gray-200 rounded-[5px] relative select-none min-w-[200px] bg-white"
+      style={style}
+    >
+      <button
+        type="button"
+        onClick={() => setSelectOpen((prev) => !prev)}
+        className="flex justify-between flex-row items-center py-[6px] px-[10px] w-full text-left"
+      >
+        <span>{title}</span>
+        <span aria-hidden>▼</span>
+      </button>
+
       {selectOpen && (
         <Selector
           presets={presetLookup}
@@ -105,7 +117,7 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
           highlightCol={highlightCol}
         />
       )}
-    </Selected>
+    </div>
   );
 };
 
