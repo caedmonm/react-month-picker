@@ -8,7 +8,7 @@ import type {
 
 const DEFAULT_TITLE = "No dates selected";
 
-// --- Utility functions ---
+/* ---------- Date helpers ---------- */
 
 const isSameMonth = (a: Date, b: Date): boolean =>
   a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
@@ -19,37 +19,39 @@ const getStartOfMonth = (date: Date): Date =>
 const getEndOfMonth = (date: Date): Date =>
   new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59, 999);
 
-const formatMonthYear = (date: Date): string => {
-  return new Intl.DateTimeFormat("en", {
-    month: "short",
-    year: "2-digit",
-  }).format(date);
-};
+/** Produce a true UTC ISO string for a given local Date (no TZ shifts). */
+const toIsoUtc = (d: Date): string =>
+  new Date(
+    Date.UTC(
+      d.getFullYear(),
+      d.getMonth(),
+      d.getDate(),
+      d.getHours(),
+      d.getMinutes(),
+      d.getSeconds(),
+      d.getMilliseconds()
+    )
+  ).toISOString();
 
-// --- Core logic ---
+const formatMonthYear = (date: Date): string =>
+  new Intl.DateTimeFormat("en", { month: "short", year: "2-digit" }).format(
+    date
+  );
+
+/* ---------- Core logic ---------- */
+
 const isMatchingPreset = (
   preset: MonthPreset,
   value: MonthRangeValue
 ): boolean => {
   const [start, end] = value;
-
-  if (start === null || end === null) {
-    return false;
-  }
-
-  const matchesStart = isSameMonth(preset.start, start);
-  const matchesEnd = isSameMonth(preset.end, end);
-
-  return matchesStart && matchesEnd;
+  if (start === null || end === null) return false;
+  return isSameMonth(preset.start, start) && isSameMonth(preset.end, end);
 };
 
 const formatRangeTitle = (range: MonthRangeValue): string => {
   const [start, end] = range;
-
-  if (!start || !end) {
-    return DEFAULT_TITLE;
-  }
-
+  if (!start || !end) return DEFAULT_TITLE;
   return `${formatMonthYear(start)} - ${formatMonthYear(end)}`;
 };
 
@@ -71,7 +73,6 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
       setTitle(DEFAULT_TITLE);
       return;
     }
-
     const matchingPreset =
       presetLookup.length > 0
         ? presetLookup.find((preset) => isMatchingPreset(preset, range)) ?? null
@@ -81,7 +82,6 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
       setTitle(matchingPreset.title);
       return;
     }
-
     setTitle(formatRangeTitle(range));
   };
 
@@ -94,17 +94,19 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
 
     if (typeof onChange === "function") {
       const [start, end] = range;
+
+      const startBound = start ? getStartOfMonth(start) : null;
+      const endBound = end ? getEndOfMonth(end) : null;
+
+      // Emit true UTC ISO strings to avoid local→UTC shifts
       onChange([
-        start === null ? null : getStartOfMonth(start).toISOString(),
-        end === null ? null : getEndOfMonth(end).toISOString(),
+        startBound ? toIsoUtc(startBound) : null,
+        endBound ? toIsoUtc(endBound) : null,
       ]);
     }
 
     const delay = typeof closeDelay === "number" ? closeDelay : 200;
-
-    setTimeout(() => {
-      setSelectOpen(false);
-    }, delay);
+    setTimeout(() => setSelectOpen(false), delay);
   };
 
   return (
@@ -115,6 +117,8 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
       <button
         type="button"
         onClick={() => setSelectOpen((prev) => !prev)}
+        aria-haspopup="dialog"
+        aria-expanded={selectOpen}
         className="flex justify-between flex-row items-center py-[6px] px-[10px] w-full text-left"
       >
         <span>{title}</span>

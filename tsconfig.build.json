@@ -1,18 +1,23 @@
+// tsconfig.build.json
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
     "lib": ["ES2022", "DOM"],
     "moduleResolution": "Node",
     "jsx": "react-jsx",
+
     "declaration": true,
     "emitDeclarationOnly": true,
-    "declarationDir": "./dist",
-    "outDir": "./dist",
+    "declarationMap": true,
+    "rootDir": "src",
+    "outDir": "dist",
+
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "allowImportingTsExtensions": true
+    "skipLibCheck": true
+
   },
   "include": ["src"],
   "exclude": ["src/main.tsx", "src/App.tsx"]
