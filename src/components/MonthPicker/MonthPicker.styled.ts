@@ -6,7 +6,7 @@ export const Selected = styled.div`
   position: relative;
   user-select: none;
   min-width: 200px;
-	background-color: white;
+  background-color: white;
 `;
 
 export const TitleWrapper = styled.div`
