@@ -1,12 +1,12 @@
 {
   "name": "simple-react-month-picker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "description": "Simple React month picker",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --project tsconfig.build.json && vite build",
+    "build": "vite build && tsc --project tsconfig.build.json",
     "lint": "eslint .",
     "preview": "vite preview"
   },
