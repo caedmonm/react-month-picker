@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "private": false,
   "description": "Simple React month picker",
   "type": "module",
@@ -10,11 +10,44 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "react",
+    "calendar",
+    "monthpicker",
+    "month picker",
+    "date picker",
+    "months"
+  ],
+  "author": "CAEDMON MULLIN <caedmon.m@gmail.com> (https://caedmonmullin.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caedmonm/react-month-picker/issues"
+  },
+  "homepage": "https://github.com/caedmonm/react-month-picker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caedmonm/react-month-picker.git"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
-    "dayjs": "^1.11.18",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "dayjs": "^1.11.18"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
