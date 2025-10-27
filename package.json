@@ -2,22 +2,18 @@
   "name": "simple-react-month-picker",
   "version": "0.1.8",
   "private": false,
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/caedmonm/react-month-picker.git"
-  },
   "description": "Simple React month picker",
-  "main": "dist/MonthPicker/MonthPicker.js",
-  "module": "dist/MonthPicker/MonthPicker.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caedmonm/react-month-picker.git"
+  },
   "keywords": [
     "react",
     "calendar",
@@ -32,20 +28,35 @@
     "url": "https://github.com/caedmonm/react-month-picker/issues"
   },
   "homepage": ".",
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.16",
-    "moment": "^2.29.1",
-    "styled-components": "^5.3.3"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish:npm": "rm -rf dist && mkdir dist && babel ./src/components -d dist --copy-files",
-    "publish:npm_windows": "(if exist dist rmdir /s /q dist) && mkdir dist && babel ./src/components -d dist --copy-files"
+    "clean": "rm -rf dist",
+    "build:dist": "tsc --project tsconfig.build.json",
+    "publish:npm": "npm run clean && npm run build:dist",
+    "publish:npm_windows": "(if exist dist rmdir /s /q dist) && npm run build:dist"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "moment": "^2.30.1",
+    "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@types/moment": "^2.13.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.4.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2 || ^18.0.0",
+    "react-dom": "^17.0.2 || ^18.0.0",
+    "react-scripts": "^4.0.3 || ^5.0.0",
+    "styled-components": "^5.3.3 || ^6.0.0",
+    "web-vitals": "^1.1.2 || ^3.5.2"
   },
   "eslintConfig": {
     "extends": [
@@ -64,17 +75,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.16.0",
-    "@babel/preset-react": "^7.16.0",
-    "babel-core": "^7.0.0-bridge.0"
-  },
-  "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "styled-components": "^5.3.3",
-    "web-vitals": "^1.1.2"
   }
 }

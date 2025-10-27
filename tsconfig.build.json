@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": false,
+    "outDir": "dist",
+    "rootDir": "src/components",
+    "module": "CommonJS",
+    "target": "ES2019",
+    "jsx": "react",
+    "allowJs": false,
+    "removeComments": true,
+    "sourceMap": false
+  },
+  "include": ["src/components/**/*"],
+  "exclude": ["src/**/*.test.*"]
+}

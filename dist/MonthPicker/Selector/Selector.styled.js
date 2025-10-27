@@ -1,71 +1,23 @@
-import styled from "styled-components";
-export const Modal = styled.div`
-  background-color: white;
-  border: #eee 1px solid;
-  position: absolute;
-  top: 35px;
-  right: 0;
-  z-index: 99999;
-  width: 425px;
-  flex-direction: row;
-  display: flex;
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
-  @media (max-width: 425px) {
-    width: 100%;
-    flex-direction: column;
-  }
-`;
-export const Presets = styled.div`
-  box-sizing: border-box;
-  flex: 0.5;
-  padding: 20px;
-  border-right: #eee 1px solid;
-`;
-export const MonthPicker = styled.div`
-  box-sizing: border-box;
-  flex: 1;
-  padding: 20px;
-`;
-export const Title = styled.div`
-  color: #575757;
-  margin: 0 0 20px 0;
-  user-select: none;
-`;
-export const Preset = styled.div`
-  color: #282c34;
-  font-weight: bold;
-  cursor: pointer;
-`;
-export const YearPicker = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-export const YearTitle = styled.div`
-  user-select: none;
-`;
-export const Months = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 5px;
-  margin-top: 10px;
-`;
-export const Month = styled.div`
-  border: #eee 1px solid;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: white;
-  text-align: center;
-  &:hover {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-  }
-  &.selected {
-    background-color: ${props => props.highlightCol ? props.highlightCol : "#1d7f7a"};
-    color: white;
-  }
-  pointer-events: ${props => props.disabled ? "none" : "auto"};
-  opacity: ${props => props.disabled ? 0.5 : 1};
-  cursor: ${props => props.disabled ? "default" : "pointer"};
-  transition: .2s;
-`;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Month = exports.Months = exports.YearTitle = exports.YearPicker = exports.Preset = exports.Title = exports.MonthPicker = exports.Presets = exports.Modal = void 0;
+var styled_components_1 = require("styled-components");
+exports.Modal = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  background-color: white;\n  border: #eee 1px solid;\n  position: absolute;\n  top: 35px;\n  right: 0;\n  z-index: 99999;\n  width: 425px;\n  flex-direction: row;\n  display: flex;\n  border-radius: 5px;\n  box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);\n  @media (max-width: 425px) {\n    width: 100%;\n    flex-direction: column;\n  }\n"], ["\n  background-color: white;\n  border: #eee 1px solid;\n  position: absolute;\n  top: 35px;\n  right: 0;\n  z-index: 99999;\n  width: 425px;\n  flex-direction: row;\n  display: flex;\n  border-radius: 5px;\n  box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);\n  @media (max-width: 425px) {\n    width: 100%;\n    flex-direction: column;\n  }\n"])));
+exports.Presets = styled_components_1.default.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  box-sizing: border-box;\n  flex: 0.5;\n  padding: 20px;\n  border-right: #eee 1px solid;\n"], ["\n  box-sizing: border-box;\n  flex: 0.5;\n  padding: 20px;\n  border-right: #eee 1px solid;\n"])));
+exports.MonthPicker = styled_components_1.default.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  box-sizing: border-box;\n  flex: 1;\n  padding: 20px;\n"], ["\n  box-sizing: border-box;\n  flex: 1;\n  padding: 20px;\n"])));
+exports.Title = styled_components_1.default.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  color: #575757;\n  margin: 0 0 20px 0;\n  user-select: none;\n"], ["\n  color: #575757;\n  margin: 0 0 20px 0;\n  user-select: none;\n"])));
+exports.Preset = styled_components_1.default.button.attrs({ type: "button" })(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  color: #282c34;\n  font-weight: bold;\n  cursor: pointer;\n  border: none;\n  background: transparent;\n  padding: 0;\n  text-align: left;\n"], ["\n  color: #282c34;\n  font-weight: bold;\n  cursor: pointer;\n  border: none;\n  background: transparent;\n  padding: 0;\n  text-align: left;\n"])));
+exports.YearPicker = styled_components_1.default.div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n"], ["\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n"])));
+exports.YearTitle = styled_components_1.default.div(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n  user-select: none;\n"], ["\n  user-select: none;\n"])));
+exports.Months = styled_components_1.default.div(templateObject_8 || (templateObject_8 = __makeTemplateObject(["\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr;\n  gap: 5px;\n  margin-top: 10px;\n"], ["\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr 1fr;\n  gap: 5px;\n  margin-top: 10px;\n"])));
+exports.Month = styled_components_1.default.button.attrs({ type: "button" })(templateObject_9 || (templateObject_9 = __makeTemplateObject(["\n  border: #eee 1px solid;\n  padding: 5px;\n  border-radius: 5px;\n  background-color: white;\n  text-align: center;\n  &:hover {\n    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);\n  }\n  &.selected {\n    background-color: ", ";\n    color: white;\n  }\n  pointer-events: ", ";\n  opacity: ", ";\n  cursor: ", ";\n  transition: 0.2s;\n"], ["\n  border: #eee 1px solid;\n  padding: 5px;\n  border-radius: 5px;\n  background-color: white;\n  text-align: center;\n  &:hover {\n    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);\n  }\n  &.selected {\n    background-color: ", ";\n    color: white;\n  }\n  pointer-events: ", ";\n  opacity: ", ";\n  cursor: ", ";\n  transition: 0.2s;\n"])), function (props) { return (props.highlightCol ? props.highlightCol : "#1d7f7a"); }, function (props) { return (props.disabled ? "none" : "auto"); }, function (props) { return (props.disabled ? 0.5 : 1); }, function (props) { return (props.disabled ? "default" : "pointer"); });
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8, templateObject_9;
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) {
+        Object.defineProperty(cooked, "raw", { value: raw });
+    }
+    else {
+        cooked.raw = raw;
+    }
+    return cooked;
+}

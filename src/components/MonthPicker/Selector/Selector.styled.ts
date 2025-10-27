@@ -37,10 +37,14 @@ export const Title = styled.div`
   user-select: none;
 `;
 
-export const Preset = styled.div`
+export const Preset = styled.button.attrs({ type: "button" as const })`
   color: #282c34;
   font-weight: bold;
   cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: left;
 `;
 
 export const YearPicker = styled.div`
@@ -60,7 +64,10 @@ export const Months = styled.div`
   margin-top: 10px;
 `;
 
-export const Month = styled.div`
+export const Month = styled.button.attrs({ type: "button" as const })<{
+  highlightCol?: string;
+  disabled?: boolean;
+}>`
   border: #eee 1px solid;
   padding: 5px;
   border-radius: 5px;
@@ -70,11 +77,11 @@ export const Month = styled.div`
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   }
   &.selected {
-    background-color: ${props => props.highlightCol ? props.highlightCol : "#1d7f7a"};
+    background-color: ${({ highlightCol }) => highlightCol ?? "#1d7f7a"};
     color: white;
   }
-  pointer-events: ${props => props.disabled ? "none" : "auto"};
-  opacity: ${props => props.disabled ? 0.5 : 1};
-  cursor: ${props => props.disabled ? "default" : "pointer"};
-  transition: .2s;
+  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
+  transition: 0.2s;
 `;
