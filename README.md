@@ -50,22 +50,6 @@ function App() {
 }
 ```
 
-## Styling with Tailwind CSS
-
-This package includes pre-built Tailwind CSS styles. To use them:
-
-```tsx
-// Import the component
-import MonthPicker from "simple-react-month-picker";
-
-// Import the Tailwind CSS styles
-import "simple-react-month-picker/styles.css";
-
-function App() {
-  return <MonthPicker value={value} onChange={handleChange} />;
-}
-```
-
 ### Using Custom Styles
 
 You can override the default styles by providing your own CSS or by using Tailwind utility classes:
