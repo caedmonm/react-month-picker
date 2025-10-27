@@ -1,6 +1,6 @@
 {
   "name": "simple-react-month-picker",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A simple React month picker component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,9 @@
   "type": "module",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "package.json",
+    "README.md"
   ],
   "scripts": {
     "build": "npm run build:css && tsc",
