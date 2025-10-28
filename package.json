@@ -1,18 +1,18 @@
 {
   "name": "simple-react-month-picker",
-  "version": "1.1.9",
-  "description": "A simple React month picker component",
+  "version": "1.1.12",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    },
-    "./styles.css": "./dist/styles.css"
+    }
   },
   "type": "module",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist",
     "package.json",
