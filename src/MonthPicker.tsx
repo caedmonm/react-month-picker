@@ -88,7 +88,7 @@ const MonthPicker = React.forwardRef<HTMLDivElement, MonthPickerProps>(
     return (
       <div
         ref={ref}
-        className="border border-gray-200 rounded-[5px] relative select-none min-w-[200px] bg-white"
+        className="simple-date-picker-wrapper border border-gray-200 rounded-[5px] relative select-none min-w-[200px] bg-white"
         style={style}
       >
         <button
@@ -99,7 +99,15 @@ const MonthPicker = React.forwardRef<HTMLDivElement, MonthPickerProps>(
           className="flex justify-between flex-row items-center py-[6px] px-[10px] w-full text-left"
         >
           <span>{title}</span>
-          <span aria-hidden>▼</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            aria-hidden="true"
+          >
+            <path fill="rgba(0,0,0,.5)" d="M7,10l5,5,5-5H7Z" />
+          </svg>
         </button>
 
         {selectOpen && (

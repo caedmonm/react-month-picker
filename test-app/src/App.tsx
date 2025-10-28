@@ -3,7 +3,6 @@ import MonthPicker, {
   type MonthPreset,
   type MonthRangeValue
 } from 'simple-react-month-picker';
-import 'simple-react-month-picker/styles.css';
 import './App.css';
 
 const formatRangeDate = (date: Date | null) =>

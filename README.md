@@ -105,6 +105,9 @@ The playground depends on the local package via `file:..`, so keeping the watch
 build running ensures any source changes are immediately available in the test
 app.
 
+
+... you might need to `yarn remove simple-react-month-picker` then `yarn add file:..`
+
 ## License
 
 MIT
