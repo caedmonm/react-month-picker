@@ -110,7 +110,7 @@ const Selector: React.FC<SelectorProps> = ({
   const endOfThisMonth = endOfMonth(new Date());
 
   return (
-    <div className="absolute top-[35px] right-0 z-[99999] w-[460px] flex flex-row rounded-[5px] border border-[#eee] bg-white shadow-[0_0_10px_0_rgb(0_0_0_/_20%)] max-[425px]:w-full max-[425px]:flex-col">
+    <div className="simple-date-picker-popup absolute top-[35px] right-0 z-[99999] w-[460px] flex flex-row rounded-[5px] border border-[#eee] bg-white shadow-[0_0_10px_0_rgb(0_0_0_/_20%)] max-[425px]:w-full max-[425px]:flex-col">
       {presetList.length > 0 && (
         <div className="box-border basis-1/2 grow-0 p-5 border-r border-[#eee]">
           <div className="text-[#575757] mb-5 select-none">PRESETS</div>
