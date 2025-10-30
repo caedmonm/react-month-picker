@@ -88,7 +88,7 @@ const MonthPicker = React.forwardRef<HTMLDivElement, MonthPickerProps>(
     return (
       <div
         ref={ref}
-        className="simple-date-picker-wrapper border border-gray-200 rounded-[5px] relative select-none min-w-[200px] bg-white"
+        className="simple-date-picker-wrapper"
         style={style}
       >
         <button
@@ -96,7 +96,7 @@ const MonthPicker = React.forwardRef<HTMLDivElement, MonthPickerProps>(
           onClick={() => setSelectOpen((prev) => !prev)}
           aria-haspopup="dialog"
           aria-expanded={selectOpen}
-          className="flex justify-between flex-row items-center py-[6px] px-[10px] w-full text-left"
+          className="month-picker__toggle"
         >
           <span>{title}</span>
           <svg

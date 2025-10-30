@@ -110,16 +110,16 @@ const Selector: React.FC<SelectorProps> = ({
   const endOfThisMonth = endOfMonth(new Date());
 
   return (
-    <div className="simple-date-picker-popup absolute top-[35px] right-0 z-[99999] w-[460px] flex flex-row rounded-[5px] border border-[#eee] bg-white shadow-[0_0_10px_0_rgb(0_0_0_/_20%)] max-[425px]:w-full max-[425px]:flex-col">
+    <div className="simple-date-picker-popup month-picker__popup">
       {presetList.length > 0 && (
-        <div className="box-border basis-1/2 grow-0 p-5 border-r border-[#eee]">
-          <div className="text-[#575757] mb-5 select-none">PRESETS</div>
+        <div className="month-picker__presets">
+          <div className="month-picker__section-title">PRESETS</div>
           {presetList.map((preset, index) => (
             <button
               key={`${preset.title}-${index}`}
               type="button"
               onClick={() => pickPreset(preset)}
-              className="font-bold cursor-pointer block"
+              className="month-picker__preset-button"
             >
               {preset.title}
             </button>
@@ -127,31 +127,30 @@ const Selector: React.FC<SelectorProps> = ({
         </div>
       )}
 
-      <div className="box-border flex-1 p-5">
-        <div className="text-[#575757] mb-5 select-none">
+      <div className="month-picker__calendar">
+        <div className="month-picker__section-title">
           SELECT A MONTH RANGE:
         </div>
 
-        <div className="flex flex-row justify-between items-center">
+        <div className="month-picker__calendar-header">
           {/* Left arrow */}
           <button
             type="button"
             onClick={() => (yearIndex ? setYearIndex(yearIndex - 1) : null)}
             disabled={!yearIndex}
-            className={`
-              w-5 h-5
-              ${
-                !yearIndex
-                  ? "opacity-20 cursor-default"
-                  : "cursor-pointer hover:opacity-70"
-              }
-            `}
+            className={[
+              "month-picker__nav-button",
+              !yearIndex ? "month-picker__nav-button--disabled" : "",
+            ]
+              .join(" ")
+              .trim()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-full h-full"
+              width="20"
+              height="20"
             >
               <path
                 fillRule="evenodd"
@@ -162,7 +161,7 @@ const Selector: React.FC<SelectorProps> = ({
           </button>
 
           {/* Year */}
-          <div className="select-none">{year.year}</div>
+          <div className="month-picker__year">{year.year}</div>
 
           {/* Right arrow */}
           <button
@@ -171,20 +170,21 @@ const Selector: React.FC<SelectorProps> = ({
               yearIndex < years.length - 1 ? setYearIndex(yearIndex + 1) : null
             }
             disabled={yearIndex === years.length - 1}
-            className={`
-              w-5 h-5
-              ${
-                yearIndex === years.length - 1
-                  ? "opacity-20 cursor-default"
-                  : "cursor-pointer hover:opacity-70"
-              }
-            `}
+            className={[
+              "month-picker__nav-button",
+              yearIndex === years.length - 1
+                ? "month-picker__nav-button--disabled"
+                : "",
+            ]
+              .join(" ")
+              .trim()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-full h-full"
+              width="20"
+              height="20"
             >
               <path
                 fillRule="evenodd"
@@ -195,7 +195,7 @@ const Selector: React.FC<SelectorProps> = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-4 gap-[5px] mt-[10px]">
+        <div className="month-picker__month-grid">
           {year.months.map((definition, index) => {
             const [selStart, selEnd] = selected as [Date | null, Date | null];
 
@@ -226,13 +226,12 @@ const Selector: React.FC<SelectorProps> = ({
                     : undefined
                 }
                 className={[
-                  "border border-[#eee] p-[5px] rounded-[5px] text-center",
-                  "hover:shadow-[0_0_5px_0_rgba(0,0,0,0.2)] transition duration-200",
-                  isSelected ? "text-white bg-[var(--hc)]" : "bg-white",
-                  isDisabled
-                    ? "pointer-events-none opacity-50 cursor-default"
-                    : "cursor-pointer",
-                ].join(" ")}
+                  "month-picker__month-button",
+                  isSelected ? "month-picker__month-button--selected" : "",
+                  isDisabled ? "month-picker__month-button--disabled" : "",
+                ]
+                  .join(" ")
+                  .trim()}
               >
                 {formatMonthShort(definition.date)}
               </button>
